@@ -1,0 +1,26 @@
+.img {
+  border-radius: 40px;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.profile-card {
+  padding: 20px 0px 0px 20px;
+}
+
+.profile-details {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-size: small;
+}
+
+.nav-icons {
+  margin-right: 10px;
+  color: rgb(75, 73, 73);
+}
+
+.nav-footer-text {
+  text-align: center;
+}

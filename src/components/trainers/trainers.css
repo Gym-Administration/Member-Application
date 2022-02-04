@@ -1,0 +1,16 @@
+.trainer-row-container {
+  width: 100px;
+  height: 290px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: rotate(-90deg);
+  transform-origin: right top;
+  transform: rotate(-90deg) translateY(-100px);
+  transform-origin: right top;
+  white-space: nowrap;
+}
+
+.trainer-row-container > div {
+  transform: rotate(90deg);
+  transform-origin: right top;
+}

@@ -1,0 +1,164 @@
+const App = () => {
+    const [content, setContent] = useState(true);
+    const [users, setUsers] = useState([...Database]);
+    const [newUsers, setNewUsers] = useState([...Database])
+    const [button, setButton] = useState(true)
+    const [count, setCount] = useState(1);
+
+    // current user
+    let user = {
+        uid: 8,
+        firstName: "Mopholosi",
+        lastName: "Monyollo",
+        avatar: "https://atlantablackstar.com/wp-content/uploads/2016/06/Ali-1.jpg",
+        signedIn: true,
+        logCount: count,
+        currentUser: true
+    }
+
+    // add new user to array
+    const handleSignIn = () => {
+        setUsers(users.concat(user))
+        setCount(count + 1)
+        setButton(false)
+        alert("You're signed in")
+    }
+
+    // remove last user from array
+    const handleSignOut = () => {
+        setUsers(newUsers);
+        setButton(true);
+        alert("You're signed out")
+    }
+
+    return (
+        <IonApp>
+            <IonPage>
+                <IonMenu side="start" menuId="menu" contentId="menu">
+                    <IonHeader>
+                        <IonToolbar>
+                            <IonTitle>Title</IonTitle>
+                        </IonToolbar>
+                    </IonHeader>
+                    <IonContent id="menu">
+                        <IonCard color="primary" className="ion-padding">
+                            <IonCardHeader color="dark">
+                                WOZA BLACK FRIDAY//KILLER SPECIAL
+                            </IonCardHeader>
+                            <IonCardContent>
+                                50% off on cars and electronic devices and 60% off when a
+                                regular customer shops with GAMEOUS POINTS CARD
+                                <IonChip color="light">25 – 27 November 2020</IonChip>
+                            </IonCardContent>
+                        </IonCard>
+                    </IonContent>
+                </IonMenu>
+                <IonHeader className="ion-border">
+                    <IonToolbar>
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            <span style={{ display: "flex", alignItems: "center" }}>
+                                <IonMenuButton menu="menu" title="menu" />
+                            </span>
+                            <IonTitle>Gym Log</IonTitle>
+                            <span style={{ alignItems: "center", display: "flex" }}>
+                                {button ? (
+                                    <input
+                                        type="button"
+                                        value="Sign In"
+                                        style={{
+                                            backgroundColor: "blue",
+                                            color: "white",
+                                            padding: "10px 20px 10px 20px",
+                                            borderRadius: "25px"
+                                        }} onClick={handleSignIn}
+                                    />
+                                ) : (
+                                    <input
+                                        type="button"
+                                        value="Sign Out"
+                                        style={{
+                                            backgroundColor: "red",
+                                            color: "white",
+                                            padding: "10px 20px 10px 20px",
+                                            borderRadius: "25px"
+                                        }} onClick={handleSignOut}
+                                    />
+                                )}
+                            </span>
+                        </div>
+                    </IonToolbar>
+                </IonHeader>
+                <IonContent>
+                    {users.length !== 0 ? (
+                        <>
+                            <IonList>
+                                {users.map((user) => {
+                                    if (user.signedIn) {
+                                        return (
+                                            <div style={{
+                                                margin: "10px",
+                                                padding: "10px",
+                                                backgroundColor: "whitesmoke",
+                                                borderRadius: "25px"
+                                            }}>
+                                                <IonItemSliding>
+                                                    <IonItem key={user.uid}>
+                                                        <div style={{
+                                                            display: "flex",
+                                                            flexDirection: "column",
+                                                            borderRadius: "25px"
+                                                        }}>
+                                                            <p>
+                                                                <strong>@{user.firstName + " " + user.lastName}</strong>
+                                                            </p>
+                                                            <div style={{
+                                                                display: "flex",
+                                                                flexDirection: "row"
+                                                            }}>
+                                                                <div style={{
+                                                                    height: "80px",
+                                                                    width: "80px"
+                                                                }}>
+                                                                    <img src={user.avatar} alt="profile" />
+                                                                </div>
+                                                                <div style={{ margin: "7px" }}>
+                                                                    <p>Total Sessions: {user.logCount}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </IonItem>
+                                                    <IonItemOptions side="end">
+                                                        <IonItemOption color="danger" onClick={() => { }}><BsTrashFill size="20px" /></IonItemOption>
+                                                    </IonItemOptions>
+                                                </IonItemSliding>
+                                            </div>
+                                        )
+                                    }
+                                })}
+                            </IonList>
+                        </>
+                    ) : (
+                        <>
+                            <IonList>
+                                <div style={{
+                                    padding: "20px",
+                                    margin: "10px",
+                                    marginTop: "60%",
+                                    backgroundColor: "whitesmoke"
+                                }}>
+                                    <h1 style={{
+                                        textAlign: "center",
+                                        color: "darkgrey",
+                                        fontStyle: "italic",
+                                    }}>The Gym Is Empty</h1>
+                                </div>
+                            </IonList>
+                        </>
+                    )}
+                </IonContent>
+            </IonPage>
+        </IonApp>
+    );
+};
+
+export default App;
